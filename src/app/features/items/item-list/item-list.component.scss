@@ -1,1 +1,10 @@
  mat-card { max-width: 600px; margin: 2rem auto; }
+
+ mat-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
