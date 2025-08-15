@@ -2,14 +2,26 @@
   <mat-card-title>Login</mat-card-title>
   <mat-card-content>
     <form (ngSubmit)="login()">
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="w-full">
         <mat-label>Email</mat-label>
-        <input matInput [(ngModel)]="email" name="email" type="email" required>
+        <input
+          matInput
+          [(ngModel)]="email"
+          name="email"
+          type="email"
+          required
+        />
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" class="w-full">
         <mat-label>Password</mat-label>
-        <input matInput [(ngModel)]="password" name="password" type="password" required>
+        <input
+          matInput
+          [(ngModel)]="password"
+          name="password"
+          type="password"
+          required
+        />
       </mat-form-field>
 
       <button mat-raised-button color="primary" type="submit">Login</button>
