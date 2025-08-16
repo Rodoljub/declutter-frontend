@@ -1,10 +1,69 @@
- mat-card { max-width: 600px; margin: 2rem auto; }
+.item-card {
+  max-width: 700px;
+  margin: 1.5rem auto;
+  padding: 0.5rem;
+}
 
- mat-list-item {
+mat-card-header {
+  padding-bottom: 8px;
+}
+
+mat-card-content {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 8px;  /* space between decision label and actions */
 }
 
-.spacer {
-  flex: 1 1 auto;
+/* Actions for decisions (Keep, Donate, Sell, Trash) */
+.actions {
+  display: flex;
+  flex-wrap: wrap;         /* wrap buttons if narrow screen */
+  gap: 8px;                /* space between buttons */
+  margin-top: 8px;
+  justify-content: flex-start;
 }
+
+.actions button {
+  min-width: 40px;
+  height: 36px;            /* consistent mini-fab size */
+}
+
+/* Edit / Delete / View History buttons */
+.crud-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Decision label (text + icon) */
+.decision-label {
+  display: flex;
+  align-items: center;     /* vertical alignment with icon */
+  gap: 6px;                /* space between icon and text */
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+
+
+}
+
+/* Decision icon slightly bigger than text */
+.decision-icon {
+  font-size: 24px;
+  line-height: 1;
+   vertical-align: middle;
+}
+
+/* Decision text styling */
+.decision-text {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+
+.actions button:hover, .crud-buttons button:hover {
+  transform: scale(1.1);
+  transition: transform 0.1s ease-in-out;
+}
+
