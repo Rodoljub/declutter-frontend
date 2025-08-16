@@ -1,11 +1,13 @@
-<!-- <h2 mat-dialog-title>Decision for {{ data.item.name }}</h2>
+<h2 mat-dialog-title>Decision: {{ data.decision | titlecase }}</h2>
 <mat-dialog-content>
-  <mat-form-field appearance="fill" class="w-full">
-    <mat-label>Notes</mat-label>
-    <textarea matInput [(ngModel)]="notes"></textarea>
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-label>Notes (optional)</mat-label>
+    <textarea matInput [(ngModel)]="notes" rows="3"></textarea>
   </mat-form-field>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-raised-button color="primary" (click)="decide('keep')">Keep</button>
-  <button mat-raised-button color="warn" (click)="decide('discard')">Discard</button>
-</mat-dialog-actions> -->
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close [disabled]="loading">Cancel</button>
+  <button mat-flat-button color="primary" (click)="confirm()" [disabled]="loading">
+    {{ loading ? 'Saving...' : 'Confirm' }}
+  </button>
+</mat-dialog-actions>
