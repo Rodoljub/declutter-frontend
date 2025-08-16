@@ -25,12 +25,24 @@ export class LoginComponent {
   email = '';
   password = '';
 
-  constructor(private router: Router, private authService: AuthService) {}
+
+  constructor(private router: Router, private api: ApiService) {}
 
 login() {
-  this.authService.login(this.email, this.password).subscribe({
-    next: () => this.router.navigate(['/items']),
-    error: err => console.error('Login failed', err)
+  this.api.post<{ token: string }>('auth/login', {
+    email: this.email,
+    password: this.password
+  }).subscribe({
+    next: (res) => {
+      localStorage.setItem('token', res.token);  // store token
+      this.router.navigate(['/items']);
+    },
+    error: (err) => {
+      console.error('Login failed', err);
+      alert('Login failed: ' + (err.error?.message || err.statusText));
+    }
   });
 }
+
+
 }

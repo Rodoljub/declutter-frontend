@@ -1,10 +1,75 @@
- <mat-card>
-      <mat-card-title>Your Items</mat-card-title>
-      <mat-card-content>
-        <mat-list>
-          <mat-list-item *ngFor="let item of items">
-            {{ item.name }} - {{ item.category }}
-          </mat-list-item>
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
+<mat-card class="item-card" *ngFor="let item of items">
+  <mat-card-header>
+    <mat-card-title>{{ item.name }}</mat-card-title>
+    <mat-card-subtitle>{{ item.category }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div
+      *ngIf="item.decision"
+      class="decision-label"
+    >
+      <mat-icon
+        class="decision-icon"
+       [ngStyle]="{'color': getDecisionIconColor(item.decision)}"
+      >
+        {{ getDecisionIcon(item.decision) }}
+      </mat-icon>
+      <span
+        class="decision-text"
+        [ngStyle]="{ color: getDecisionIconColor(item.decision) }"
+      >
+        {{ item.decision | titlecase }}
+      </span>
+    </div>
+
+<!-- mat-mini-fab -->
+    <div class="actions" *ngIf="!item.decision">
+      <button
+        mat-icon-button
+        color="primary"
+        matTooltip="Keep"
+        (click)="makeDecision(item.id, 'keep')"
+      >
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="accent"
+        matTooltip="Donate"
+        (click)="makeDecision(item.id, 'donate')"
+      >
+        <mat-icon>volunteer_activism</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="warn"
+        matTooltip="Sell"
+        (click)="makeDecision(item.id, 'sell')"
+      >
+        <mat-icon>sell</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="warn"
+        matTooltip="Trash"
+        (click)="makeDecision(item.id, 'trash')"
+      >
+        <mat-icon>delete_sweep</mat-icon>
+      </button>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions class="crud-buttons">
+    <button mat-icon-button color="primary" (click)="editItem(item)">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" (click)="deleteItem(item.id)">
+      <mat-icon>delete_forever</mat-icon>
+    </button>
+    <button mat-icon-button (click)="viewHistory(item.id)">
+      <mat-icon>history</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+
