@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent {
   email = '';
   password = '';
 
+
   constructor(private router: Router, private api: ApiService) {}
 
 login() {
@@ -41,5 +43,6 @@ login() {
     }
   });
 }
+
 
 }
