@@ -117,20 +117,6 @@ export class ItemListComponent implements OnInit {
     }
   }
 
-  getDecisionColor(decision: string): string {
-    switch (decision.toUpperCase()) {
-      case 'KEEP':
-        return '#C8E6C9'; // light green background
-      case 'DONATE':
-        return '#BBDEFB'; // light blue background
-      case 'SELL':
-        return '#FFE0B2'; // light orange background
-      case 'TRASH':
-        return '#FFCDD2'; // light red background
-      default:
-        return '#E0E0E0'; // light gray
-    }
-  }
 
   getDecisionIconColor(decision: string): string {
     switch (decision.toUpperCase()) {
