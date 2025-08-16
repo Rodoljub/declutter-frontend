@@ -5,13 +5,10 @@
   </mat-card-header>
 
   <mat-card-content>
-    <div
-      *ngIf="item.decision"
-      class="decision-label"
-    >
+    <div *ngIf="item.decision" class="decision-label">
       <mat-icon
         class="decision-icon"
-       [ngStyle]="{'color': getDecisionIconColor(item.decision)}"
+        [ngStyle]="{ color: getDecisionIconColor(item.decision) }"
       >
         {{ getDecisionIcon(item.decision) }}
       </mat-icon>
@@ -21,10 +18,20 @@
       >
         {{ item.decision | titlecase }}
       </span>
+
+      <!-- Change Decision Button -->
+      <button
+        mat-icon-button
+        color="primary"
+        matTooltip="Change Decision"
+        (click)="toggleDecisionButtons(item.id)"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
     </div>
 
-<!-- mat-mini-fab -->
-    <div class="actions" *ngIf="!item.decision">
+    <!-- mat-mini-fab -->
+    <div class="actions" *ngIf="!item.decision || showDecisionButtonsMap[item.id]">
       <button
         mat-icon-button
         color="primary"
@@ -72,4 +79,3 @@
     </button>
   </mat-card-actions>
 </mat-card>
-

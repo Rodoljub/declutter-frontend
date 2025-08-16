@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../core/services/api.service';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
@@ -11,7 +9,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { DecisionDialogComponent } from '../decision-dialog/decision-dialog.component';
 import { ItemService } from '../item.service';
-import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { HistoryDialogComponent } from '../history-dialog/history-dialog.component';
@@ -44,9 +42,9 @@ interface Item {
 })
 export class ItemListComponent implements OnInit {
   items: Item[] = [];
+  showDecisionButtonsMap: Record<number, boolean> = {}; 
 
   constructor(
-    private http: HttpClient,
     private router: Router,
     private dialog: MatDialog,
     private itemService: ItemService
@@ -59,6 +57,8 @@ export class ItemListComponent implements OnInit {
   loadItems() {
     this.itemService.getItems().subscribe((data) => {
       this.items = data;
+
+      this.showDecisionButtonsMap = {};
     });
   }
 
@@ -84,6 +84,10 @@ export class ItemListComponent implements OnInit {
     });
   }
 
+  toggleDecisionButtons(itemId: number) {
+    this.showDecisionButtonsMap[itemId] = !this.showDecisionButtonsMap[itemId];
+  }
+
   makeDecision(itemId: number, decision: string) {
     const dialogRef = this.dialog.open(DecisionDialogComponent, {
       width: '300px',
@@ -93,6 +97,7 @@ export class ItemListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((success) => {
       if (success) {
         this.loadItems(); // refresh list if updated
+        this.showDecisionButtonsMap[itemId] = false;
       }
     });
   }

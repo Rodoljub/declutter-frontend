@@ -1,18 +1,20 @@
 <mat-card>
-      <mat-card-title>Edit Item</mat-card-title>
-      <mat-card-content>
-        <form (ngSubmit)="updateItem()">
-          <mat-form-field appearance="fill">
-            <mat-label>Name</mat-label>
-            <input matInput [(ngModel)]="name" name="name" required>
-          </mat-form-field>
+  <mat-card-title>Edit Item</mat-card-title>
+  <mat-card-content>
+    <form (ngSubmit)="updateItem()">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="name" name="name" required />
+      </mat-form-field>
 
-          <mat-form-field appearance="fill">
-            <mat-label>Category</mat-label>
-            <input matInput [(ngModel)]="category" name="category" required>
-          </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <input matInput [(ngModel)]="category" name="category" required />
+      </mat-form-field>
 
-          <button mat-raised-button color="primary" type="submit">Save Changes</button>
-        </form>
-      </mat-card-content>
-    </mat-card>
+      <button mat-raised-button color="primary" type="submit">
+        Save Changes
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
