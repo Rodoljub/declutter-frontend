@@ -2,7 +2,7 @@
 .app-layout {
   display: flex;
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #f5f5f5;;
 }
 
 /* Sidebar */
@@ -15,6 +15,7 @@
   gap: 1rem;
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   transition: transform 0.3s ease-in-out;
+   box-sizing: border-box;
 }
 
 /* Sidebar buttons */
@@ -36,6 +37,8 @@ mat-toolbar {
   position: sticky;
   top: 0;
   z-index: 1000;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Hover effect */
@@ -50,6 +53,7 @@ mat-toolbar {
   }
 
   .sidebar {
+    max-width: 100%;
     width: 100%;
     flex-direction: row;
     justify-content: space-around;
