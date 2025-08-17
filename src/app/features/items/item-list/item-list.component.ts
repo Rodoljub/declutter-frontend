@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { HistoryDialogComponent } from '../history-dialog/history-dialog.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 interface Item {
   id: number;
@@ -36,13 +37,14 @@ interface Item {
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
+    MatMenuModule,
   ],
   templateUrl: './item-list.component.html',
   styleUrl: './item-list.component.scss',
 })
 export class ItemListComponent implements OnInit {
   items: Item[] = [];
-  showDecisionButtonsMap: Record<number, boolean> = {}; 
+  showDecisionButtonsMap: Record<number, boolean> = {};
 
   constructor(
     private router: Router,
@@ -117,19 +119,29 @@ export class ItemListComponent implements OnInit {
     }
   }
 
-
   getDecisionIconColor(decision: string): string {
     switch (decision.toUpperCase()) {
       case 'KEEP':
-        return '#4CAF50'; // green icon
+        return 'primary'; // corresponds to mat-primary
       case 'DONATE':
-        return '#2196F3'; // blue icon
+        return 'accent'; // corresponds to mat-accent
       case 'SELL':
-        return '#FF9800'; // orange icon
       case 'TRASH':
-        return '#F44336'; // red icon
+        return 'warn'; // corresponds to mat-warn
       default:
-        return '#9E9E9E'; // gray
+        return ''; // default/no color
     }
   }
+
+  // For span text color using ngClass
+getDecisionColorClass(decision: string): string {
+  switch (decision?.toUpperCase()) {
+    case 'KEEP': return 'decision-keep';
+    case 'DONATE': return 'decision-donate';
+    case 'SELL': return 'decision-sell';
+    case 'TRASH': return 'decision-trash';
+    default: return '';
+  }
+}
+
 }

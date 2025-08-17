@@ -61,4 +61,12 @@ export class ItemService {
   ): Observable<any> {
     return this.api.patch<any>(`items/${itemId}/decision`, { decision, notes });
   }
+
+  getDecisionStats(): Observable<any> {
+    return this.api.get('items/stats'); // backend extracts user from token
+  }
+
+  getDailyDecisionStats(days: number = 7): Observable<any> {
+    return this.api.get(`items/stats/daily?days=${days}`);
+  }
 }

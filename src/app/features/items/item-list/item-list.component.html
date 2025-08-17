@@ -1,36 +1,27 @@
 <mat-card class="item-card" *ngFor="let item of items">
   <mat-card-header>
-    <mat-card-title>{{ item.name }}</mat-card-title>
-    <mat-card-subtitle>{{ item.category }}</mat-card-subtitle>
+    <mat-card-title>{{ item.name }} - {{ item.category }}</mat-card-title>
+    <!-- <mat-card-subtitle>{{ item.category }}</mat-card-subtitle> -->
   </mat-card-header>
 
   <mat-card-content>
-    <div *ngIf="item.decision" class="decision-label">
+    <!-- Decision label (if already decided) -->
+    <div *ngIf="item.decision" class="decision-label"  (click)="toggleDecisionButtons(item.id)">
       <mat-icon
         class="decision-icon"
-        [ngStyle]="{ color: getDecisionIconColor(item.decision) }"
+        [color]="getDecisionIconColor(item.decision)"
       >
         {{ getDecisionIcon(item.decision) }}
       </mat-icon>
       <span
         class="decision-text"
-        [ngStyle]="{ color: getDecisionIconColor(item.decision) }"
+        [ngClass]="getDecisionColorClass(item.decision)"
       >
         {{ item.decision | titlecase }}
       </span>
-
-      <!-- Change Decision Button -->
-      <button
-        mat-icon-button
-        color="primary"
-        matTooltip="Change Decision"
-        (click)="toggleDecisionButtons(item.id)"
-      >
-        <mat-icon>edit</mat-icon>
-      </button>
     </div>
 
-    <!-- mat-mini-fab -->
+    <!-- Decision action buttons (always visible if no decision, or toggle for change) -->
     <div class="actions" *ngIf="!item.decision || showDecisionButtonsMap[item.id]">
       <button
         mat-icon-button
@@ -67,14 +58,15 @@
     </div>
   </mat-card-content>
 
+  <!-- Crud buttons always visible -->
   <mat-card-actions class="crud-buttons">
-    <button mat-icon-button color="primary" (click)="editItem(item)">
+    <button mat-icon-button color="primary" matTooltip="Edit Item" (click)="editItem(item)">
       <mat-icon>edit</mat-icon>
     </button>
-    <button mat-icon-button color="warn" (click)="deleteItem(item.id)">
+    <button mat-icon-button color="warn" matTooltip="Delete Item" (click)="deleteItem(item.id)">
       <mat-icon>delete_forever</mat-icon>
     </button>
-    <button mat-icon-button (click)="viewHistory(item.id)">
+    <button mat-icon-button matTooltip="View History" (click)="viewHistory(item.id)">
       <mat-icon>history</mat-icon>
     </button>
   </mat-card-actions>

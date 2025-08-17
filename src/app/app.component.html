@@ -6,9 +6,10 @@
 </mat-toolbar>
 
 <div class="app-layout">
-  <aside class="sidebar"  [class.show]="sidebarVisible">
-      <button mat-button [routerLink]="'/items'">My Items</button>
-  <button mat-button [routerLink]="'/add-item'">Add Item</button>
+  <aside class="sidebar" [class.show]="sidebarVisible">
+    <button mat-button [routerLink]="'/items'">My Items</button>
+    <button mat-button [routerLink]="'/add-item'">Add Item</button>
+    <button mat-button [routerLink]="'/dashboard'">Dashboard</button>
   </aside>
 
   <main class="content">

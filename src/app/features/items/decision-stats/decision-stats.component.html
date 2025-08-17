@@ -1,0 +1,10 @@
+<div *ngIf="loading">Loading stats...</div>
+<div *ngIf="!loading">
+  <h3>Declutter Progress</h3>
+  <ul>
+    <li>Keep: {{ stats['KEEP'] || 0 }}</li>
+    <li>Donate: {{ stats['DONATE'] || 0 }}</li>
+    <li>Sell: {{ stats['SELL'] || 0 }}</li>
+    <li>Trash: {{ stats['TRASH'] || 0 }}</li>
+  </ul>
+</div>
